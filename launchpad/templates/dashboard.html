@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Launchpad{% endblock %}
+
+{% block content %}
+<section class="space-y-8">
+    <div class="rounded-3xl border border-blue-500/20 bg-blue-500/10 p-8">
+        <p class="text-sm uppercase tracking-[0.2em] text-blue-200">Welcome back</p>
+        <h1 class="mt-3 text-3xl font-semibold text-slate-50">Hi {{ user.first_name|default:user.username }}, here is your Launchpad control center.</h1>
+        <p class="mt-4 max-w-3xl text-sm text-slate-300">We are preparing a personalized overview of your current initiatives, upcoming milestones, and active collaborators. Start by adding cards to your workspace.</p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-slate-950/40">
+            <p class="text-xs uppercase tracking-widest text-blue-200">Next milestones</p>
+            <p class="mt-3 text-sm text-slate-300">Coming soon: track product releases, investor touchpoints, and hiring pipeline.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-slate-950/40">
+            <p class="text-xs uppercase tracking-widest text-blue-200">Team activity</p>
+            <p class="mt-3 text-sm text-slate-300">See collaboration updates, shared docs, and approvals as they happen.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-slate-950/40">
+            <p class="text-xs uppercase tracking-widest text-blue-200">Funding runway</p>
+            <p class="mt-3 text-sm text-slate-300">Keep investors aligned with up-to-date metrics and narrative highlights.</p>
+        </div>
+    </div>
+
+    <div class="rounded-3xl border border-slate-800 bg-slate-900/40 p-8">
+        <h2 class="text-lg font-semibold text-slate-100">What’s next?</h2>
+        <p class="mt-3 text-sm text-slate-300">We’re building data integrations and collaboration modules tailored to your launch plan. For now, explore the platform and invite your co-founders to set up your workspace.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#" class="rounded-full bg-blue-500 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-blue-400">Create first project</a>
+            <a href="#" class="rounded-full border border-slate-700 px-5 py-2 text-sm font-semibold text-slate-300 transition hover:border-blue-400 hover:text-blue-200">Invite teammates</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
