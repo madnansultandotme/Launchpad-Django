@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Launchpad | Your Startup Control Center{% endblock %}
+
+{% block content %}
+<section class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+    <div class="space-y-6">
+        <span class="inline-flex items-center gap-2 rounded-full border border-blue-400/50 bg-blue-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-blue-200">Launch smarter</span>
+        <h1 class="text-4xl font-bold tracking-tight text-slate-50 sm:text-5xl">Launchpad helps founders move from idea to impact.</h1>
+        <p class="text-lg text-slate-300">Craft your roadmap, onboard teams, and keep investors close&mdash;everything in one modern workspace built for the pace of launch.</p>
+        <div class="flex flex-wrap gap-3">
+            <a href="/accounts/signup/" class="rounded-full bg-blue-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-md shadow-blue-500/40 transition hover:bg-blue-400">Create Account</a>
+            <a href="/accounts/login/" class="rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-blue-400 hover:text-blue-200">I already have an account</a>
+        </div>
+    </div>
+    <div class="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-2xl shadow-blue-500/20">
+        <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-slate-100">What you get with Launchpad</h2>
+            <ul class="space-y-3 text-sm text-slate-300">
+                <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-200">1</span><span>Personalized dashboards that surface what matters to you right now.</span></li>
+                <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-200">2</span><span>Actionable analytics to track product-market fit, runway, and investor updates.</span></li>
+                <li class="flex items-start gap-3"><span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-200">3</span><span>Secure collaboration so co-founders, advisors, and teams stay aligned.</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="mt-16 grid gap-6 rounded-3xl border border-slate-800 bg-slate-900/40 p-8 sm:grid-cols-2">
+    <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-slate-100">Move fast without breaking trust</h3>
+        <p class="text-sm text-slate-300">Launchpad is built with enterprise-grade security, SSO-ready authentication, and fine-grained access controls so you can invite the right people with confidence.</p>
+    </div>
+    <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-slate-100">Data where you need it</h3>
+        <p class="text-sm text-slate-300">Connect product analytics, finance, and ops tooling for a single source of truth. Tailored dashboards ensure every stakeholder is up to speed.</p>
+    </div>
+</section>
+{% endblock %}
