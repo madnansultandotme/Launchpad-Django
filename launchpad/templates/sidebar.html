@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard | Launchpad{% endblock %}
+
+{% block content %}
+<div x-data="{ open: false }" class="flex min-h-screen bg-slate-950 text-slate-100">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden md:flex md:w-64 md:flex-col border-r border-slate-800 bg-slate-900/70 backdrop-blur-md">
+
+    <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+      <a href="{% url 'dashboard' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
+        Overview
+      </a>
+
+      <!-- ✅ Website Pages (click-to-expand) -->
+      <div x-data="{ submenuOpen: false }" class="group">
+        <button 
+          @click="submenuOpen = !submenuOpen"
+          class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium text-slate-300 hover:text-blue-400 focus:outline-none"
+        >
+          <span>Website Pages</span>
+          <svg 
+            :class="submenuOpen ? 'rotate-180 text-blue-400' : ''" 
+            class="h-4 w-4 text-slate-400 transition-transform duration-200" 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div 
+          x-show="submenuOpen"
+          x-transition
+          class="ml-4 mt-1 flex flex-col space-y-1"
+        >
+          <a href="{% url 'all_pages' %}" class="block rounded-md px-3 py-1.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-blue-300">
+            All Pages
+          </a>
+          <a href="{% url 'add_page' %}" class="block rounded-md px-3 py-1.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-blue-300">
+            Add Page
+          </a>
+        </div>
+      </div>
+
+      <!-- Customize Theme -->
+      <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
+        Customize Theme
+      </a>
+
+      <!-- Settings -->
+      <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
+        Settings
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Mobile Sidebar -->
+  <div x-show="open" class="fixed inset-0 z-40 flex md:hidden">
+    <div class="fixed inset-0 bg-black/50" @click="open = false"></div>
+    <aside class="relative w-64 bg-slate-900/90 backdrop-blur-md border-r border-slate-800 p-6">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <h2 class="text-lg font-semibold text-blue-400">Launchpad</h2>
+        <button @click="open = false" class="text-slate-400 hover:text-blue-300">
+          ✕
+        </button>
+      </div>
+      <nav class="mt-6 space-y-2">
+        <a href="{% url 'all_pages' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">All Pages</a>
+        <a href="{% url 'add_page' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Add Page</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Customize Theme</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Settings</a>
+      </nav>
+    </aside>
+  </div>
+
+  <!-- Main Area -->
+  <div class="flex-1 flex flex-col">
+    <header class="flex items-center justify-between border-b border-slate-800 bg-slate-950/60 px-6 py-4 md:hidden">
+      <button @click="open = true" class="text-slate-300 hover:text-blue-400 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <h1 class="text-lg font-semibold text-blue-300">Dashboard</h1>
+    </header>
+
+    <main class="flex-1 overflow-y-auto p-6 md:p-10">
+      {% block dashboard_content %}
+      <!-- Child pages inject content here -->
+      {% endblock %}
+    </main>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_body %}
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+{% endblock %}
+
+
+
+{% comment %} {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard - Launchpad{% endblock %}
+
+{% block content %}
+
+ <div class="flex min-h-screen bg-slate-950 text-slate-100">
+
+  <!-- Sidebar -->
+  <aside class="w-64 pt-10 flex-shrink-0 border-r border-slate-800 bg-slate-900/70 backdrop-blur-md">
+    <nav class="px-4 space-y-2">
+      <!-- Website Pages Menu -->
+      <div class="group">
+        <button class="flex w-full items-center justify-between px-3 py-2 text-sm font-medium text-slate-300 hover:text-blue-400 focus:outline-none">
+          <span>Website Pages</span>
+          <svg class="h-4 w-4 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="ml-4 mt-1 hidden flex-col space-y-1 group-hover:flex">
+          <a href="{% url 'all_pages' %}" class="block rounded-md px-3 py-1.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-blue-300">All Pages</a>
+          <a href="#" class="block rounded-md px-3 py-1.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-blue-300">Add Page</a>
+        </div>
+      </div>
+
+      <!-- Customize Theme -->
+      <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
+        Customize Theme
+      </a>
+
+      <!-- Settings -->
+      <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
+        Settings
+      </a>
+    </nav>
+  </aside>
+    
+</div>
+
+{% block dashboard_content %}
+    <!-- Child templates will fill this area -->
+{% endblock %}
+
+{% endblock %} {% endcomment %}
+

@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from dashboard import views as dashboard_views
 from . import home_view
 
 urlpatterns = [
@@ -25,6 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/pages/', include('dashboard.urls')),
+
+    path('<str:username>/', dashboard_views.published_pages, name='published_pages'),
+    path('<str:username>/<str:page_slug>/', dashboard_views.page_detail, name='page_detail'),
 ]
 
 if settings.DEBUG:
