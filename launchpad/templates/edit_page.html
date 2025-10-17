@@ -1,0 +1,36 @@
+{% extends "sidebar.html" %}
+
+{% block dashboard_content%}
+<h1 class="text-2xl font-semibold text-blue-400 text-center">Edit Page</h1>
+
+
+<div class="flex justify-center">
+<form method="post" action="{% url 'edit_page' page.id %}" class="min-w-[350px] w-[60%] max-w-[800px] space-y-6">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+        {% if field.field.widget.input_type == 'checkbox' %}
+            <div class="flex items-center justify-between">
+                <label class="flex items-center gap-2 text-sm text-slate-300">
+                    {{ field }}
+                    <span>{{ field.label }}</span>
+                </label>
+                {% if field.errors %}
+                    <p class="text-xs text-red-300">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="space-y-2">
+                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-slate-200 ">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <p class="text-xs text-red-300">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+  <button type="submit" class=" w-full rounded-md bg-blue-500 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-blue-400 transition">
+    Save Changes
+  </button>
+</form>
+</div>
+{% endblock %}

@@ -2,6 +2,8 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from allauth.account.forms import LoginForm, SignupForm
+from dashboard.models import Page
+from django.utils.text import slugify
 
 
 class TailwindFormMixin:
@@ -20,7 +22,7 @@ class TailwindFormMixin:
     def _init_tailwind(self) -> None:
         for name, field in self.fields.items():
             widget = field.widget
-            if isinstance(widget, forms.CheckboxInput):
+            if isinstance(widget, (forms.CheckboxInput)):
                 widget.attrs['class'] = self.checkbox_class
             else:
                 existing = widget.attrs.get('class', '')
@@ -53,3 +55,27 @@ class TailwindLoginForm(TailwindFormMixin, LoginForm):
         self.fields['password'].widget.attrs['placeholder'] = _('Password')
         if 'remember' in self.fields:
             self.fields['remember'].label = _('Keep me signed in')
+
+
+class TailwindPageForm(TailwindFormMixin, forms.ModelForm):
+    """Tailwind-styled form for the Page model."""
+
+    class Meta:
+        model = Page
+        fields = ['title', 'slug', 'content', 'is_published']
+        labels = {
+            'title': _('Page Title'),
+            'slug': _('Page Slug'),
+            'content': _('Page Content'),
+            'is_published': _('Publish this page?'),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._init_tailwind()
+        # Optional: Add placeholder text
+        self.fields['title'].widget.attrs['placeholder'] = _('Enter a catchy page title')
+        self.fields['slug'].widget.attrs['placeholder'] = _('Slug (optional) - same as title')
+        self.fields['content'].widget.attrs['placeholder'] = _('Write your content here...')
+    
+  

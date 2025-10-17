@@ -79,6 +79,11 @@ Then install all required packages:
 ```bash
 pip install -r requirements.txt
 ```
+Also install the following 
+pip install django-allauth
+pip install django-tailwind
+pip install django-tailwind[reload]
+
 ### 5️⃣ Apply Migrations
 
 Run the following commands to set up the database:
@@ -109,3 +114,19 @@ You should see the LaunchPad home page 🎉
 
 ### ✅ You're All Set!
 You now have LaunchPad running locally and ready to explore, customize, or contribute!
+
+### Modification Guide
+If you start changing files and you run seperate terminal for tailwind css by the following command
+```bash
+python manage.py tailwind start
+```
+and you encounter error NPM not found. Go to settings.py and change following with your npm path.
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+### Modification Guide
+If you start modifying files and run a separate terminal for Tailwind CSS using the following command:
+```bash
+python manage.py tailwind start
+```
+and you encounter an “NPM not found” error, go to your settings.py file and update the following line with your NPM path:
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
