@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="bg-slate-950 text-slate-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+  </head>
+  <body class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    {% if page %}
+    <article class="max-w-3xl w-full bg-slate-900/50 border border-slate-800 rounded-2xl p-8 shadow-lg shadow-blue-900/20 backdrop-blur">
+      <h1 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4 text-center">
+        {{ page.title }}
+      </h1>
+
+      <div class="prose prose-invert prose-slate max-w-none leading-relaxed text-slate-300 mb-6">
+        {{ page.content|linebreaks }}
+      </div>
+
+      <div class="border-t border-slate-800 pt-4 text-sm text-slate-500 flex justify-between items-center">
+        <p>🕓 Created at: {{ page.created_at|date:"F j, Y, g:i a" }}</p>
+        <a href="javascript:history.back()" class="text-blue-400 p-2 rounded-xl bg-slate-800 hover:text-blue-300">Back</a>
+      </div>
+    </article>
+    {% endif %}
+  </body>
+</html>
