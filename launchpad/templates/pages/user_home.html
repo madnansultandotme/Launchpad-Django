@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ user_profile.username }}'s Published Pages</h1>
+<ul>
+  {% for page in pages %}
+    <li><a href="/{{ user_profile.username }}/{{ page.slug }}/">{{ page.title }}</a></li>
+  {% empty %}
+    <li>No published pages yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
