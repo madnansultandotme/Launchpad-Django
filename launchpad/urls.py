@@ -25,6 +25,7 @@ urlpatterns = [
     path('', home_view.home, name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+     path('', include('pages.urls')),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/settings/', dashboard_views.site_settings, name='site_settings'),
     path('dashboard/pages/', include('dashboard.urls')),
@@ -33,5 +34,7 @@ urlpatterns = [
     path('<str:username>/<str:page_slug>/', dashboard_views.page_detail, name='page_detail'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += [path('__reload__/', include('django_browser_reload.urls'))]
+# 👇 Add this only if you are using django-browser-reload
+urlpatterns += [
+    path("__reload__/", include("django_browser_reload.urls")),
+]

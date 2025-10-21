@@ -1,0 +1,11 @@
+<h1>{{ user_profile.username }}'s Public Site</h1>
+
+<ul>
+  {% for page in pages %}
+    <li>
+      <a href="/{{ user_profile.username }}/{{ page.slug }}/">{{ page.title }}</a>
+    </li>
+  {% empty %}
+    <li>No published pages yet.</li>
+  {% endfor %}
+</ul>
