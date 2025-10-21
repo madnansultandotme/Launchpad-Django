@@ -53,7 +53,7 @@
       </a>
 
       <!-- Settings -->
-      <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
+      <a href="{% url 'site_settings' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">
         Settings
       </a>
     </nav>
@@ -72,8 +72,8 @@
       <nav class="mt-6 space-y-2">
         <a href="{% url 'all_pages' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">All Pages</a>
         <a href="{% url 'add_page' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Add Page</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Customize Theme</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Settings</a>
+  <a href="#" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Customize Theme</a>
+  <a href="{% url 'site_settings' %}" class="block rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-blue-400">Settings</a>
       </nav>
     </aside>
   </div>

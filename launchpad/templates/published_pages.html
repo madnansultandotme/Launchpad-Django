@@ -6,7 +6,36 @@
 {% block content %}
 
 <main class="relative mx-auto flex max-w-6xl flex-1 flex-col px-4 py-12">
-  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
+  <section class="mb-10 rounded-3xl border border-slate-800 {{ theme_class }} p-8 shadow-lg shadow-blue-900/20">
+    <h1 class="text-3xl font-semibold text-blue-300">
+      {% if site_config %}
+        {{ site_config.resolved_title }}
+      {% else %}
+        {{ user_profile.username|default:"Launchpad" }}
+      {% endif %}
+    </h1>
+    <p class="mt-3 text-sm text-slate-300 max-w-2xl">
+      {% if site_config %}
+        {{ site_config.resolved_description }}
+      {% else %}
+        Explore {{ user_profile.username|default:"our" }} published updates.
+      {% endif %}
+    </p>
+    {% if site_config and site_config.featured_page %}
+      <div class="mt-6 rounded-2xl border border-blue-500/30 bg-blue-500/10 p-5">
+        <p class="text-xs uppercase tracking-[0.2em] text-blue-200">Featured Page</p>
+        <a href="{% url 'page_detail' user_profile.username site_config.featured_page.slug %}" class="mt-2 inline-flex items-center gap-2 text-lg font-semibold text-blue-300 hover:text-blue-200">
+          {{ site_config.featured_page.title }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right">
+            <path d="M7 7h10v10"/>
+            <path d="M7 17 17 7"/>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+  </section>
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 mx-auto w-full">
     {% for page in pages %}
       <a href="{% url 'page_detail' user_profile.username page.slug %}" class="block h-[280px] ">
         <div class="border border-slate-800 bg-slate-900/40 rounded-lg p-4 h-full hover:shadow-md shadow-blue-500/40">
@@ -21,7 +50,7 @@
     <div class="text-center w-[80vw]">
 
         <img src="{% static 'no-pages.svg' %}" alt="No Pages" class="mx-auto h-70" />
-         <p class="text-slate-500 text-center col-span-full mt-6">No published pages of Authur.</p>
+      <p class="text-slate-500 text-center col-span-full mt-6">No published pages yet.</p>
 
     </div>
     {% endfor %}

@@ -1,13 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="bg-slate-950 text-slate-100">
+<html lang="en" class="text-slate-100 {% if theme == 'classic' %}bg-slate-900{% else %}bg-slate-950{% endif %}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
   </head>
-  <body class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+  <body class="min-h-screen flex flex-col items-center justify-center px-4 py-12 {% if theme == 'classic' %}bg-slate-900/95{% else %}bg-slate-950/95{% endif %}">
     {% if page %}
     <article class="max-w-3xl w-full bg-slate-900/50 border border-slate-800 rounded-2xl p-8 shadow-lg shadow-blue-900/20 backdrop-blur">
       <h1 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4 text-center">

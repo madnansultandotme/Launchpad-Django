@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/settings/', dashboard_views.site_settings, name='site_settings'),
     path('dashboard/pages/', include('dashboard.urls')),
 
     path('<str:username>/', dashboard_views.published_pages, name='published_pages'),
