@@ -1,0 +1,49 @@
+{% extends "sidebar.html" %}
+{% load static %}
+
+{% block title %}Site Settings - Launchpad{% endblock %}
+
+{% block dashboard_content %}
+<div class="space-y-6">
+  <div class="flex flex-col gap-2">
+    <h1 class="text-2xl font-semibold text-blue-400">Site Settings</h1>
+    <p class="text-sm text-slate-400">Personalize how your public site appears at <span class="text-blue-300">/{{ request.user.username }}/</span>.</p>
+  </div>
+
+  {% if messages %}
+    <div class="space-y-3">
+      {% for message in messages %}
+        <div class="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-200">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="post" class="max-w-3xl space-y-6 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 shadow-lg shadow-slate-950/40">
+    {% csrf_token %}
+    <div class="grid gap-5 md:grid-cols-2">
+      {% for field in form.visible_fields %}
+        <div class="space-y-2 {% if field.name == 'site_description' %}md:col-span-2{% endif %}">
+          <label for="{{ field.id_for_label }}" class="text-sm font-medium text-slate-200">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <p class="text-xs text-slate-500">{{ field.help_text }}</p>
+          {% endif %}
+          {% if field.errors %}
+            <p class="text-xs text-red-300">{{ field.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if pages_count == 0 %}
+      <p class="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
+        You have not created any pages yet. Add a page to feature it on your site.
+      </p>
+    {% endif %}
+
+    <div class="flex items-center justify-end">
+      <button type="submit" class="rounded-md bg-blue-500 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-blue-400">Save changes</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
